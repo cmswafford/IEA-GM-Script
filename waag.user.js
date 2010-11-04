@@ -6,6 +6,13 @@
 // @require        https://ajax.googleapis.com/ajax/libs/jqueryui/1.5.2/jquery-ui.min.js
 // @require        http://cdn.jquerytools.org/1.2.4/all/jquery.tools.min.js
 
+GM_addStyle('table.datadisplaytable { position: relative; font-size: 11px; }');
+GM_addStyle('table.datadisplaytable tr { position: relative; }' );
+GM_addStyle('table.datadisplaytable td { position: relative; width: 130px; }');
+GM_addStyle('table.datadisplaytable td div.day-container{ position: relative; margin:0; padding: 0; height:100%; }') 
+GM_addStyle('table.datadisplaytable td div.class { position: absolute; margin:0; padding: 0; border: 1px solid #000; text-align: center; width: 100%; }');
+GM_addStyle('h3 { margin:0; padding:0; height: 60px; vertical-align: top; }');
+
 // Call main()
 (function(){ main(); } )();
 
@@ -32,6 +39,11 @@ function main()
 
    var tds = null;
    var minTime, maxTime = '';
+   var minHour = 0;
+   var maxHour = 0;
+   var h = 0;
+   var AMPM = '';
+
 
    // Get all the data
    var dataSpace = $('tr td.ddlabel');
@@ -124,7 +136,13 @@ function main()
          break;
 
          case '3':
-           courses[course][j]['building_short'] = a[x].split(' ')[0];
+           shortB = a[x].split(' ')[0];
+           if( shortB[0] == '1')
+             shortB = shortB.split('1')[1];
+
+           courses[course][j]['building_long'] = building_to_long(shortB);
+           courses[course][j]['building_short'] = shortB;
+
            courses[course][j]['room'] = a[x].split(' ')[1];
          break;
 
@@ -133,7 +151,17 @@ function main()
        }
      }
 
-     courses[course][j]['html'] = '<div class="class course'+k+'">'+courses[course][j]['course']+'</div>';
+     minHour = minTime.split(':')[0];
+     maxHour = maxTime.split(':')[0];
+
+     curHour = courses[course][j]['time_24_start'].split(':')[0];
+     minOffset = courses[course][j]['time_24_start'].split(':')[1];
+
+     courses[course][j]['html'] = ''
+     +'<div style="height:'+courses[course][j]['duration']+';top: '+parseInt((curHour-minHour)*60+parseInt(minOffset))+'px" class="class course'+k+'">'+courses[course][j]['course']
+       +'<br><span title="'+courses[course][j]['building_long']+'">'+courses[course][j]['building_short']+' '+courses[course][j]['room']+'</span>'
+       +'<br>'+courses[course][j]['time_start']+' - '+courses[course][j]['time_end']
+     +'</div>';
 
      // Determine which day each class is held
      p = $(this).parent();
@@ -148,26 +176,46 @@ function main()
          break;
        }
      }
+
+
+     console.log(courses[course]);
    });
 
    $table.html('');
    $table.append('<thead><tr><th></th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr></head>');
-   tbody = '<tbody><tr><th><p>'+minTime.split(':')[0]+':00</p></th>';
+
+   //tbody = '<tbody><tr><th><p>'+minTime.split(':')[0]+':00</p></th>';
+   tbody = '<tbody><tr id="courses"><th>';
+   h = 0;
+   AMPM = '';
+
+   for( i=minHour; i <= maxHour; i++ )
+   {
+     h = i>12 ? i-12 : i;
+     AMPM = i<12 ? 'AM' : 'PM';
+
+     tbody += '<h3>'+h+':00 '+AMPM+'</h3>';
+   }
+   tbody += '</th>';
 
    for( d in oDaySchedule )
    {
-     tbody += '<td>';
+     tbody += '<td><div class="day-container">';
      for( c in oDaySchedule[d] )
      {
        tbody += oDaySchedule[d][c]['html'];
      }
-     tbody += '</td>';
+     tbody += '</div></td>';
    }
 
    tbody += '</tr></tbody>';
 
-   console.log(tbody);
-
    $table.append(tbody);
+}
 
+function building_to_long( building_short )
+{
+  var buildings = { EVRT:'Everitt Laboratory', MSEB:'Material Sciences Engineering Building', SIEBL:'Siebel Center', DCL:'Digital Computing Laboratory', HAB:'Henry Administration Building' };
+
+  return buildings[building_short];
 }
