@@ -427,6 +427,9 @@ function init()
 
     // Finally re-add the new table
     $table.append(tbody);
+	
+	$("#schedule-nav a, #goto-date input:eq(2), .headerlinksdiv2 input:eq(1)").button(); // next/prev/go buttons
+
   };
 
   WAAG.run();
