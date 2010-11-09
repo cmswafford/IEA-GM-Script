@@ -442,15 +442,14 @@ function init()
     }
 
     var detailsHTML = ''
-      +'Class Times:<br>'+classTimes
-      +'Term: Fall 2010<br>'
-      +'<br>'
+      +'<div class="class-left"><span class="classHeading">Class Times - '+ WAAG.term + ' ' + WAAG.year + '</span><br>'+classTimes      
+      +'<br/></div><div class="class-right"><span class="classHeading">Faculty</span><br/>'
       +'Instructor: Professor Foobar <img src="'+WWW+'/images/email.png"><br>'
-      +'TA: John Doe <img src="'+WWW+'/images/email.png"><br>'
-      +'<br>'
-      +'Course Website: <a href="https://agora.cs.illinois.edu/display/cs465/Home">https://agora.cs.illinois.edu/display/cs465/Home</a><br>'
-      +'Required Textbooks: Human Computer Interaction <img src="'+WWW+'/images/textbook.png"><br>'
-      +'<a href="https://ui2web1.apps.uillinois.edu/BANPROD1/bwskfshd.P_CrseSchdDetl?crn='+WAAG.courses[course][j]['CRN']+'">More</a><br>'
+      +'TA: John Doe <img src="'+WWW+'/images/email.png"><br></div>'
+      +'<div class="class-reg"><span class="classHeading">Course Resources</span><br/>'
+      +'<a class="courseWebsite" target="_blank" href="https://agora.cs.illinois.edu/display/cs465/Home">Course Website</a><br>'
+      +'Required Textbooks: <ul><li>Human Computer Interaction <img src="'+WWW+'/images/textbook.png"></li></ul><br>'
+      +'<a href="https://ui2web1.apps.uillinois.edu/BANPROD1/bwskfshd.P_CrseSchdDetl?crn='+WAAG.courses[course][j]['CRN']+'">More</a><br></div>'
       ;
 
     var dialogOptions = { autoOpen: false
@@ -462,7 +461,7 @@ function init()
                          ,closeText: 'Close'
                         };
 
-    var $dialog = $('<div></div>').html(detailsHTML).dialog(dialogOptions);
+    var $dialog = $('<div class="detailsWrapper"></div>').html(detailsHTML).dialog(dialogOptions);
 
     //$('#'course+j).click(function(){ $dialog.dialog('open'); });
     $dialog.dialog('open');

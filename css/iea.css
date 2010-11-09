@@ -17,6 +17,7 @@ table.datadisplaytable td div.class { position: absolute; margin: 0 auto; paddin
 div#schedule-footer { overflow: auto; }
 a#print-schedule{ float: left; margin: 15px 0 0 0; text-indent: 30px; background: url('../images/print.png') no-repeat; color: blue; }
 a#list-textbooks{ float: left; margin: 15px 0 0 0; text-indent: 25px; background: url('../images/textbook.png') no-repeat; color: blue; margin-left:10px; cursor:pointer;}
+.courseWebsite { background: url('../images/hyperlink.png') no-repeat 130px; width:200px; padding-right:30px; }
 span.link-separator { float: left; margin: 15px 0 0 0;text-indent: 8px;}
 a#add-to-google { float: right; margin: 10px 1px 5px 0; } 
 
@@ -40,3 +41,10 @@ h3#iea-schedule-header { margin: 0 auto 0 auto; padding: 0; text-align: center; 
 #iea-schedule { margin: 0 auto; width: 780px; }
 
 #textbooks-page { display: none; }
+
+.classHeading { border-bottom:2px solid gray; line-height:35px;}
+div.class-left  { float: left;}
+div.class-reg { float: left;clear:both;}
+div.class-right { float: right; padding-right:60px;}
+div.detailsWrapper ul { margin:0;}
+div.detailsWrapper ul li { padding:0;margin:0;}
