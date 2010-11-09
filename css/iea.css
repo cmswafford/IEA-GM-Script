@@ -1,0 +1,40 @@
+table.datadisplaytable { margin: 10px auto 0 auto; position: relative; font-size: 11px; border: 1px #000 solid; width: 780px !important; background: url('http://dl.dropbox.com/u/124437/hour-marker.png') 0 -40px; repeat: repeat-y; }
+table.datadisplaytable tr { position: relative; }
+table.datadisplaytable td { position: relative; width: 130px; }
+table.datadisplaytable td div.day-container{ position: relative; margin:0; padding: 0; height:100%; }
+table.datadisplaytable td div.class { position: absolute; margin: 0 auto; padding: 0; border: 1px solid #000; text-align: center; width: 98%; }
+#courses h3 { margin:0; padding:0; height: 60px; vertical-align: top; }
+
+.course0 { background-color: #f961A9; }
+.course1 { background-color: #f9B461; }
+.course2 { background-color: #61E6f9; }
+.course3 { background-color: #9E61F9; }
+.course4 { background-color: #bbf961; }
+.course5 { background-color: #6197F9; }
+
+.gray { background-color: #eaeaea; }
+
+div#schedule-footer { overflow: auto; }
+a#print-schedule{ float: left; margin: 15px 0 0 0; text-indent: 30px; background: url('../images/print.png') no-repeat; color: blue; }
+a#add-to-google { float: right; margin: 10px 1px 5px 0; } 
+
+.infotextdiv{ display: none; } /* Pointless text is pointless */
+
+/* goto box */
+#goto-date { float: right; }
+#goto_id { border: 1px solid #000; background: url('../images/calendar-icon.png') no-repeat right; }
+/* Input boxes */
+input[type='submit'] { border: 1px solid #000; background-color: #c0d8f0; }
+input[type='input'] { border: 1px solid #000; } 
+input[type='input']:hover { background-color: #c0d8f0; } 
+
+/* Gross purple visited link color is gross */
+a:visited { color: blue !important;}
+.tabon a:visited { color: white !important;}
+.taboff a:visited { color: black !important;}
+
+h3#iea-schedule-header { margin: 0 auto 0 auto; padding: 0; text-align: center; font-weight: bold; width: 400px; clear: both; }
+
+#iea-schedule { margin: 0 auto; width: 780px; }
+
+#textbooks-page { display: none; }

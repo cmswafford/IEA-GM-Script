@@ -1,0 +1,18 @@
+@import url('iea.css');
+
+/* Delete everything */
+div { display: none; }
+table.plaintable{ display: none; }
+a#add-to-google { display: none; }
+.warningtext { display: none; }
+body { background: none; }
+a { display: none; }
+form { display: none; }
+
+/* Show the schedule */
+div#iea-schedule { display: block; }
+div.pagebodydiv { display: block; }
+div.pagebodydiv table div { display: block; }
+
+#doPrint { display: none; }
+#doBack { display: none; }

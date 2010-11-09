@@ -1,0 +1,19 @@
+@import url('iea.css');
+
+/* Delete everything */
+div { display: none; }
+table.plaintable{ display: none; }
+a#add-to-google { display: none; }
+.warningtext { display: none; }
+body { background: none; }
+a { display: none; }
+form { display: none; }
+ul { display: none; }
+
+#doPrint { display: block; }
+#doBack { display: block; }
+
+/* Show textbook list */
+#textbooks-page { display: block; }
+li { list-style: none; }
+img { border: 0; }
