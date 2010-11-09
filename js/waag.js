@@ -1,5 +1,3 @@
-window.WWW = 'http://pangolin.sktsoft.com/uiuc';
-
 // Add loader and include CSS
 (function(){
   var l = document.createElement('link'); l.rel = 'stylesheet'; l.media = 'screen'; l.type='text/css'; l.href=WWW+'/css/iea.css'; l.id="iea-css";
