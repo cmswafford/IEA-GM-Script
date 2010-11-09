@@ -44,8 +44,9 @@ h3#iea-schedule-header { margin: 0 auto 0 auto; padding: 0; text-align: center; 
 
 .classHeading { border-bottom:2px solid gray; line-height:35px;}
 div.class-left  { float: left;}
-div.class-reg { float: left;clear:both;}
+div.class-reg { float: left;clear:left;}
 div.class-right { float: right; padding-right:60px;}
+div.class-map { float:right; width:240px; height:250px; padding-right:100px; border:2px solid black; }
 div.detailsWrapper ul { margin:0;}
 div.detailsWrapper ul li { padding:0;margin:0;}
 #schedule-nav a, #goto-date input , .headerlinksdiv2 input{ font-size: .9em;}

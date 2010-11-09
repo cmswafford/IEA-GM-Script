@@ -453,6 +453,7 @@ function init()
       +'<a class="courseWebsite" target="_blank" href="https://agora.cs.illinois.edu/display/cs465/Home">Course Website</a><br>'
       +'Required Textbooks: <ul><li>Human Computer Interaction <img src="'+WWW+'/images/textbook.png"></li></ul><br>'
       +'<a href="https://ui2web1.apps.uillinois.edu/BANPROD1/bwskfshd.P_CrseSchdDetl?crn='+WAAG.courses[course][j]['CRN']+'">More</a><br></div>'
+	  +'<div class="class-map"><img src="'+WWW+'/images/bing.map.png"></div>'
       ;
 
     var dialogOptions = { autoOpen: false
