@@ -8,8 +8,8 @@
 // @contributor     Mark Swafford, Aaron Hogue
 // ==/UserScript==
 
-//window.WWW = 'http://pangolin.sktsoft.com/uiuc'; // sandboxed URI
-window.WWW = 'http://eai.localhost/uiuc'; // sandboxed URI [I2CS]
+window.WWW = 'http://pangolin.sktsoft.com/uiuc'; // sandboxed URI
+// window.WWW = 'http://eai.localhost/uiuc'; // sandboxed URI [I2CS]
 var isI2CS = false; // initializer;
 
 InitVars(); // allow waag.js to see WWW
