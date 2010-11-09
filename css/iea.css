@@ -2,7 +2,7 @@ table.datadisplaytable { margin: 10px auto 0 auto; position: relative; font-size
 table.datadisplaytable tr { position: relative; }
 table.datadisplaytable td { position: relative; width: 130px; }
 table.datadisplaytable td div.day-container{ position: relative; margin:0; padding: 0; height:100%; }
-table.datadisplaytable td div.class { position: absolute; margin: 0 auto; padding: 0; border: 1px solid #000; text-align: center; width: 98%; }
+table.datadisplaytable td div.class { position: absolute; margin: 0 auto; padding: 0; border: 1px solid #000; text-align: center; width: 98%; cursor:pointer;}
 #courses h3 { margin:0; padding:0; height: 60px; vertical-align: top; }
 
 .course0 { background-color: #f961A9; }
@@ -16,6 +16,8 @@ table.datadisplaytable td div.class { position: absolute; margin: 0 auto; paddin
 
 div#schedule-footer { overflow: auto; }
 a#print-schedule{ float: left; margin: 15px 0 0 0; text-indent: 30px; background: url('../images/print.png') no-repeat; color: blue; }
+a#list-textbooks{ float: left; margin: 15px 0 0 0; text-indent: 25px; background: url('../images/textbook.png') no-repeat; color: blue; margin-left:10px; cursor:pointer;}
+span.link-separator { float: left; margin: 15px 0 0 0;text-indent: 8px;}
 a#add-to-google { float: right; margin: 10px 1px 5px 0; } 
 
 .infotextdiv{ display: none; } /* Pointless text is pointless */
@@ -33,7 +35,7 @@ a:visited { color: blue !important;}
 .tabon a:visited { color: white !important;}
 .taboff a:visited { color: black !important;}
 
-h3#iea-schedule-header { margin: 0 auto 0 auto; padding: 0; text-align: center; font-weight: bold; width: 400px; clear: both; }
+h3#iea-schedule-header { margin: 0 auto 0 auto; padding: 0; text-align: center; font-weight: bold; width: 100%; clear: both; }
 
 #iea-schedule { margin: 0 auto; width: 780px; }
 

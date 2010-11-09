@@ -220,7 +220,7 @@ function init()
     $iea.append('<p id="schedule-nav"><a style="float:left;" href="'+previousLink+'">&laquo; Previous</a> <a style="float:right;" href="'+nextLink+'">Next &raquo;</a></p>');
 
     // Add Print & Google links
-    $iea.append('<div id="schedule-footer"><a id="print-schedule" href="" onclick="WAAG.printPreview(); return false;">Print Preview</a> | <a>View Textbook List</a> <a id="add-to-google" href="http://www.google.com/calendar/render?cid=http%3A%2F%2Fi'+WWW+'%2Fgoogle.cal" target="_blank"><img src="http://www.google.com/calendar/images/ext/gc_button6.gif" border=0></a></div>');
+    $iea.append('<div id="schedule-footer"><a id="print-schedule" href="" title="Print Preview" onclick="WAAG.printPreview(); return false;">Print Preview</a><span class="link-separator"> | </span><a title="View Textbook List" id="list-textbooks">Textbook List</a> <a id="add-to-google" title="Add to Google Calendar" href="http://www.google.com/calendar/render?cid=http%3A%2F%2Fi'+WWW+'%2Fgoogle.cal" target="_blank"><img src="http://www.google.com/calendar/images/ext/gc_button6.gif" border=0></a></div>');
 
     // Create Textbook List
     var textbooks = ''
