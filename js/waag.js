@@ -203,11 +203,19 @@ function init()
     WAAG.term = WAAG.terms[mon];
     WAAG.year = $t.substr(-4,4);
     WAAG.day = $t.substr(4,2);
+	var startDate = new Date(WAAG.mm+'/'+WAAG.day+'/'+WAAG.year); // get date start
+	WAAG.StartDate = startDate; // log initial start date
+	WAAG.MonDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
+	WAAG.TueDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
+	WAAG.WedDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
+	WAAG.WedDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
+	WAAG.ThuDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
+	WAAG.FriDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); 
     var previousLink = $($('.pagebodydiv .plaintable a')[0]).attr('href');
     var nextLink = $($('.pagebodydiv .plaintable a')[1]).attr('href');
     $($('.pagebodydiv .plaintable')[1]).remove();
 
-    $iea.append('<h3 id="iea-schedule-header">'+WAAG.term+' '+WAAG.year+'</h3>');
+    $iea.append('<h3 id="iea-schedule-header" class="ui-widget-header">'+WAAG.term+' '+WAAG.year+'</h3>');
 
     $iea.append('<p id="schedule-nav"><a style="float:left;" href="'+previousLink+'">&laquo; Previous</a> <a style="float:right;" href="'+nextLink+'">Next &raquo;</a></p>');
 
@@ -382,7 +390,7 @@ function init()
     WAAG.courses = courses; // Update the object
 
     // Make new HTML header
-    $table.append('<thead><tr><th></th><th>Monday <span id="start-date">'+WAAG.mm+'/'+WAAG.day+'</span></th><th class="gray">Tuesday</th><th>Wednesday</th><th class="gray">Thursday</th><th>Friday</th></tr></head>');
+    $table.append('<thead><tr><th></th><th>Monday <span id="start-date">'+WAAG.MonDate+'</span></th><th class="gray">Tuesday '+WAAG.TueDate+'</th><th>Wednesday '+WAAG.WedDate+'</th><th class="gray">Thursday '+WAAG.ThuDate+'</th><th>Friday '+WAAG.FriDate+'</th></tr></head>');
 
     //tbody = '<tbody><tr><th><p>'+minTime.split(':')[0]+':00</p></th>';
     tbody = '<tbody><tr id="courses"><th>';
