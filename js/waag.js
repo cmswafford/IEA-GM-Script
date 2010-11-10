@@ -436,7 +436,7 @@ function init()
     $("#dateSearch").detach().prependTo(".pagebodydiv");
     $("#dateSearch").prepend("<h5 class='ui-widget-header ui-corner-all'>Search Schedule by Date</h5>");
     $("label[for=goto_id]").hide();
-
+	
   };
 
   WAAG.run();
@@ -455,21 +455,27 @@ function init()
       +'<div class="class-left"><span class="classHeading">Class Times - '+ WAAG.term + ' ' + WAAG.year + '</span><br>'+classTimes      
       +'<br/></div><div class="class-right"><span class="classHeading">Faculty</span><br/>'
       +'Instructor: Professor Foobar <img src="'+WWW+'/images/email.png"><br>'
-      +'TA: John Doe <img src="'+WWW+'/images/email.png"><br></div>'
+      +'TA: John Doe <img src="'+WWW+'/images/email.png"><br>'
+	  +'<div class="class-map-container ui-corner-all" id="map-container"><div class="class-map-tabs" id="map-tabs">'
+	  +'  <ul><li><a href="#tabs-1">Aerial Map</a></li><li><a href="#tabs-2">Floorplan</a></li></ul>'
+	  +'  <div id="tabs-1"><div class="class-map ui-corner-all"><img src="'+WWW+'/images/bing.map.png"></div>	</div>'
+	  +'  <div id="tabs-2"><div class="class-map ui-corner-all"><img src="'+WWW+'/images/bing.map2.png"></div>	</div>'  
+	  +'</div></div>'	  
+	  +'</div>'
       +'<div class="class-reg"><span class="classHeading">Course Resources</span><br/>'
       +'<a class="courseWebsite" target="_blank" href="https://agora.cs.illinois.edu/display/cs465/Home">Course Website</a><br>'
       +'Required Textbooks: <ul><li>Human Computer Interaction <img src="'+WWW+'/images/textbook.png"></li></ul><br>'
-      +'<a href="https://ui2web1.apps.uillinois.edu/BANPROD1/bwskfshd.P_CrseSchdDetl?crn='+WAAG.courses[course][j]['CRN']+'">More</a><br></div>'
-	  +'<div class="class-map ui-corner-all"><img src="'+WWW+'/images/bing.map.png"></div>'
-      ;
+      +'<a href="https://ui2web1.apps.uillinois.edu/BANPROD1/bwskfshd.P_CrseSchdDetl?crn='+WAAG.courses[course][j]['CRN']+'">More</a><br></div>';
 
     var dialogOptions = { autoOpen: false
                          ,title:  WAAG.courses[course][j]['course']+' - '+WAAG.courses[course][j]['section']
-                         ,width:  700
+                         ,width:  720
                          ,height: 450
                          ,show: 'fade'
                          ,modal:  true
                          ,closeText: 'Close'
+						 ,open : function() { $tabs = $("#map-tabs").tabs(); $tabs.tabs("select", 0);}
+						 ,close : function() { $(".detailsWrapper").remove();}
                         };
 
     var $dialog = $('<div class="detailsWrapper"></div>').html(detailsHTML).dialog(dialogOptions);

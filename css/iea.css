@@ -43,10 +43,13 @@ h3#iea-schedule-header { margin: 0 auto 0 auto; padding: 0; text-align: center; 
 #textbooks-page { display: none; }
 
 .classHeading { border-bottom:2px solid gray; line-height:35px;}
-div.class-left  { float: left;}
-div.class-reg { float: left;clear:left;}
-div.class-right { float: right; padding-right:60px;}
-div.class-map { float:right; width:240px; height:250px; padding-right:100px; border:2px solid black; }
+div.class-left  { float: left; width: 300px;}
+div.class-reg { float: left;clear:left; width:300px;}
+div.class-right { float: right; padding-right:10px;}
+div.class-map-container { float:right; border:2px solid gray; width:305px; padding-right:45px;margin-top:30px; }
+div.class-map-tabs { width:340px; height:250px;}
+div.class-map { border:2px solid black;width:300px;height:200px; }
+div.class-map  img { width:300px;height:200px; }
 div.detailsWrapper ul { margin:0;}
 div.detailsWrapper ul li { padding:0;margin:0;}
 #schedule-nav a, #goto-date input , .headerlinksdiv2 input{ font-size: .9em;}
@@ -54,3 +57,7 @@ div.detailsWrapper ul li { padding:0;margin:0;}
 #dateSearch { float:right;border:1px solid gray;padding:5px;margin-top:30px;}
 #dateSearch h5 { padding:2px;margin:0;padding-left:10px;}
 .warningtext { width:250px;}
+
+/* JQuery UI overrides */
+.ui-tabs .ui-tabs-nav li a { padding:0.1em .5em !important; }
+.ui-tabs .ui-tabs-panel { padding: .5em 1em !important;}
