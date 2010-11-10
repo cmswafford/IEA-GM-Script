@@ -10,7 +10,7 @@ a { display: none; }
 form { display: none; }
 
 /* Show the schedule */
-#iea-schedule { display: block !important; }
+#iea-schedule { display: block !important;float:left;margin-left:150px; }
 div.pagebodydiv { display: block; }
 div.pagebodydiv table div { display: block; }
 

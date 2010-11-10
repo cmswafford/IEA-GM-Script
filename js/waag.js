@@ -215,7 +215,7 @@ function init()
     var nextLink = $($('.pagebodydiv .plaintable a')[1]).attr('href');
     $($('.pagebodydiv .plaintable')[1]).remove();
 
-    $iea.append('<h3 id="iea-schedule-header" class="ui-widget-header">'+WAAG.term+' '+WAAG.year+'</h3>');
+    $iea.append('<h3 id="iea-schedule-header" class="ui-widget-header ui-corner-top">'+WAAG.term+' '+WAAG.year+'</h3>');
 
     $iea.append('<p id="schedule-nav"><a style="float:left;" href="'+previousLink+'">&laquo; Previous</a> <a style="float:right;" href="'+nextLink+'">Next &raquo;</a></p>');
 
@@ -376,7 +376,7 @@ function init()
 
      // Create the HTML to insert for this class
      courses[course][j]['html'] = ''
-     +'<div id="'+course+j+'" onclick="WAAG.showDetails(\''+course+'\','+j+');" style="height:'+courses[course][j]['duration']+';top: '+parseInt((curHour-minHour)*60+parseInt(minOffset))+'px" class="class course'+k+'">'+courses[course][j]['course']
+     +'<div id="'+course+j+'" onclick="WAAG.showDetails(\''+course+'\','+j+');" style="height:'+courses[course][j]['duration']+';top: '+parseInt((curHour-minHour)*60+parseInt(minOffset))+'px" class="class ui-corner-all course'+k+'">'+courses[course][j]['course']
        +'<br><span title="'+courses[course][j]['building_long']+'">'+courses[course][j]['building_short']+' '+courses[course][j]['room']+'</span>'
        +'<br>'+courses[course][j]['time_start']+' - '+courses[course][j]['time_end']
        //+ '<br><a id="'+course+j+'" href="#TB_inline?height=500&width=600&inlineId=showDetails'+course+'&modal=true" class="thickbox">Show</a>'
@@ -428,7 +428,14 @@ function init()
     // Finally re-add the new table
     $table.append(tbody);
 	
+	// Final Processing //
 	$("#schedule-nav a, #goto-date input:eq(2), .headerlinksdiv2 input:eq(1)").button(); // next/prev/go buttons
+	$table.addClass("ui-corner-all");
+	$("#goto_id, #keyword_in_id").addClass("ui-corner-all");
+	$("#iea-schedule form:eq(0)").wrap("<div id='dateSearch' class='ui-corner-all'></div>");
+    $("#dateSearch").detach().prependTo(".pagebodydiv");
+    $("#dateSearch").prepend("<h5 class='ui-widget-header ui-corner-all'>Search Schedule by Date</h5>");
+    $("label[for=goto_id]").hide();
 
   };
 
@@ -453,7 +460,7 @@ function init()
       +'<a class="courseWebsite" target="_blank" href="https://agora.cs.illinois.edu/display/cs465/Home">Course Website</a><br>'
       +'Required Textbooks: <ul><li>Human Computer Interaction <img src="'+WWW+'/images/textbook.png"></li></ul><br>'
       +'<a href="https://ui2web1.apps.uillinois.edu/BANPROD1/bwskfshd.P_CrseSchdDetl?crn='+WAAG.courses[course][j]['CRN']+'">More</a><br></div>'
-	  +'<div class="class-map"><img src="'+WWW+'/images/bing.map.png"></div>'
+	  +'<div class="class-map ui-corner-all"><img src="'+WWW+'/images/bing.map.png"></div>'
       ;
 
     var dialogOptions = { autoOpen: false
@@ -483,7 +490,7 @@ WAAG.printPreview = function()
   $(back).insertBefore('#iea-schedule-header');
   $(print).insertAfter('.datadisplaytable');
   $('#start-date').hide();
-}
+ }
 
 WAAG.closePrintPreview = function()
 {
