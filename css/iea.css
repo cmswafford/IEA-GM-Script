@@ -48,7 +48,8 @@ div.class-reg { float: left;clear:left; width:300px;}
 div.class-right { float: right; padding-right:10px;}
 div.class-map-container { float:right; border:2px solid gray; width:305px; padding-right:45px;margin-top:30px; }
 div.class-map-tabs { width:340px; height:250px;}
-div.class-map { border:2px solid black;width:300px;height:200px; }
+div.class-map { border:2px solid black;width:300px;height:200px;z-index:9999999; }
+.pinTitle { z-index: 9999999;}
 div.class-map  img { width:300px;height:200px; }
 div.course-location { margin-top:15px;}
 div.course-detail { margin-top:10px;}

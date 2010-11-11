@@ -437,6 +437,10 @@ function init()
     $("#dateSearch").prepend("<h5 class='ui-widget-header ui-corner-all'>Search Schedule by Date</h5>");
     $("label[for=goto_id]").hide();
 	$(".pagebodydiv>a, .pagebodydiv>br, .pagebodydiv>span").remove().clone().appendTo('.pagebodydiv');
+	
+	// script loading
+	$.getScript("https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.3&s=1");
+	$.getScript(WWW+'/js/bing.map.js');	
   };
 
   WAAG.run();
@@ -458,7 +462,7 @@ function init()
       +'TA: <span class="course-instructor">John Doe <img src="'+WWW+'/images/email.png"></span><br></div>'
 	  +'<div class="class-map-container ui-corner-all" id="map-container"><div class="class-map-tabs" id="map-tabs">'
 	  +'  <ul><li><a href="#tabs-1">Building Map</a></li><li><a href="#tabs-2">Floorplan</a></li></ul>'
-	  +'  <div id="tabs-1"><div class="class-map ui-corner-all"><img src="'+WWW+'/images/bing.map.png"></div>	</div>'	  
+	  +'  <div id="tabs-1"><div class="ui-corner-all" ><div id="theMap1" style="width:310px;height:200px;position:relative;clear:both;">hello everyone</div></div>	</div>'	  
 	  +'  <div id="tabs-2"><div class="class-map ui-corner-all"><img src="'+WWW+'/images/bing.map2.png"></div>	</div>'  
 	  +'</div></div>'	  
 	  +'</div>'
@@ -472,6 +476,7 @@ function init()
                          ,title:  WAAG.courses[course][j]['course']+' - '+WAAG.courses[course][j]['section']
                          ,width:  730
                          ,height: 480
+						 ,zIndex: 500
                          ,show: 'fade'
                          ,modal:  true
                          ,closeText: 'Close'
@@ -492,8 +497,14 @@ function init()
 											.dialog({title:"Message Confirmation", width: 322, height: 158, buttons: { "OK" : function() { $(this).dialog('close');}}});
 										}
 									}
-								});   
-							});
+								});   							
+							}); 
+							// load bing location
+							LoadMap('Siebel Center for Computer Science, 201 N. Goodwin Avenue, Urbana, IL 61801');	
+							// tooltip fixes
+							$(".ero-leftBeak, .ero-progressAnimation").css("z-index","1001");
+							$(".ui-widget-overlay").css("z-index","2");
+							$(".ui-dialog").css("z-index","3");
 						}
 						 ,close : function() { $(".detailsWrapper").remove();}
                         };
