@@ -436,7 +436,7 @@ function init()
     $("#dateSearch").detach().prependTo(".pagebodydiv");
     $("#dateSearch").prepend("<h5 class='ui-widget-header ui-corner-all'>Search Schedule by Date</h5>");
     $("label[for=goto_id]").hide();
-	
+	$(".pagebodydiv>a, .pagebodydiv>br, .pagebodydiv>span").remove().clone().appendTo('.pagebodydiv');
   };
 
   WAAG.run();
