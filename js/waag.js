@@ -1,4 +1,7 @@
 // Add loader and include CSS
+
+var ut = Math.round(new Date().getTime() / 1000);
+
 (function(){
   var l = document.createElement('link'); l.rel = 'stylesheet'; l.media = 'screen'; l.type='text/css'; l.href=WWW+'/css/iea.css'; l.id="iea-css";
   (document.getElementsByTagName('head')[0] || document.body).appendChild(l);
@@ -219,34 +222,14 @@ function init()
     // Now delete their POS nav elements
     $($('.pagebodydiv .plaintable')[1]).remove();
 
-<<<<<<< HEAD
     // Add the header
-    $iea.append('<h3 id="iea-schedule-header" class="ui-widget-header">'+WAAG.term+' '+WAAG.year+'</h3>');
-=======
     $iea.append('<h3 id="iea-schedule-header" class="ui-widget-header ui-corner-top">'+WAAG.term+' '+WAAG.year+'</h3>');
->>>>>>> 75a1697661b9ff68c48578539aca94d94ed53eeb
 
     // Add the navigation buttons
     $iea.append('<p id="schedule-nav"><a class="iea-cal-nav" style="float:left;" href="'+previousLink+'">&laquo; Previous</a> <a class="iea-cal-nav" style="float:right;" href="'+nextLink+'">Next &raquo;</a></p>');
 
     // Add Print Preview & Google links
-    $iea.append('<div id="schedule-footer"><a id="print-schedule" href="" title="Print Preview" onclick="WAAG.printPreview(); return false;">Print Preview</a><span class="link-separator"> | </span><a onclick="WAAG.TextbooksList();" title="View Textbook List" id="list-textbooks">Textbook List</a> <a id="add-to-google" title="Add to Google Calendar" href="http://www.google.com/calendar/render?cid=http%3A%2F%2Fi'+WWW+'%2Fgoogle.cal" target="_blank"><img src="http://www.google.com/calendar/images/ext/gc_button6.gif" border=0></a></div>');
-
-    // Create Textbook List
-    var textbooks = ''
-    + '<div id="textbooks-page">'
-    + '<a href="#" onclick="closeTextbook(); return false;">Textbook</a>'
-    + '<ul id="textbook-list">'
-    + '<li>CS 411 - Database Systems The Complete Book <a href="http://www.amazon.com/Database-Systems-Complete-Book-GOAL/dp/0130319953"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
-    + '<li>CS 465 - Human-Computer Interaction <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/tis-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
-    + '<li>CS 465 - The Design of Everyday Things <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/tis-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
-    + '<li>ECE 391 - Advanced UNIX Programming <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/tis-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
-    + '<li>ECE 391 - The Linux Kernel<a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/tis-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
-    + '</ul>'
-    + '<a href="#" onclick="window.print(); return false;">Print</a>'
-    + '</div>'
-    ;
-    $iea.append(textbooks);
+    $iea.append('<div id="schedule-footer"><a id="print-schedule" href="" title="Print Preview" onclick="WAAG.printPreview(); return false;">Print Preview</a><span class="link-separator"> | </span><a onclick="WAAG.openTextbooksList();" title="View Textbook List" id="list-textbooks">Textbook List</a> <a id="add-to-google" title="Add to Google Calendar" href="http://www.google.com/calendar/render?cid=http%3A%2F%2Fi'+WWW+'%2Fgoogle.cal" target="_blank"><img src="http://www.google.com/calendar/images/ext/gc_button6.gif" border=0></a></div>');
 
     // Get all the data
     var $table = WAAG.$('table.datadisplaytable')
@@ -444,8 +427,10 @@ function init()
     $("#goto_id, #keyword_in_id").addClass("ui-corner-all");
     $("#iea-schedule form:eq(0)").wrap("<div id='dateSearch' class='ui-corner-all'></div>");
     $("#dateSearch").detach().prependTo(".pagebodydiv");
-    $("#dateSearch").prepend("<h5 class='ui-widget-header ui-corner-all'>Search Schedule by Date</h5>");
+    $("#dateSearch").prepend("<h5 class='ui-widget-header ui-corner-all'>Skip to Date</h5>");
     $("label[for=goto_id]").hide();
+    $('.pagebodydiv > span').append(' ').detach().appendTo($('#iea-schedule'));
+    $('.pagebodydiv > a').detach().appendTo($('#iea-schedule'));
   };
 
   WAAG.run();
@@ -484,27 +469,27 @@ function init()
                          ,show: 'fade'
                          ,modal:  true
                          ,closeText: 'Close'
-						 ,open : function() { 
-							$tabs = $("#map-tabs").tabs(); $tabs.tabs("select", 0);
-							$("#faculty-container img").click(function() { 
-							var emailFormHTML = '<div id="emailLabels"><label for="fromAddress"><strong>From Address:</strong></label><div class="lblpad"/><label  for="toAddress"><strong>To Address:</strong></label><div class="lblpad"/><label  for="ccAddress"><strong>CC Address:</strong></label><div class="lblpad"/><label  for="emailSubject"><strong>Subject:</strong></label><div class="lblpad"/><label  for="emailBody"><strong>Body:</strong></label></div>'
-											   +'<div id="emailInput"><input type="text" name="emailFrom" id="fromAddress" size="35" maxlength="60"><div class="inppad"/><input type="text" name="toAddress" id="toAddress" size="35" maxlength="60"><div class="inppad"/><input type="text" name="ccAddress" id="ccAddress" size="35" maxlength="60"><div class="inppad"/><input type="text" name="emailSubject" id="emailSubject" size="35" maxlength="60"><div class="inppad"/><textarea name="emailBody" id="emailBody" cols="33" maxlength="600" rows="6" /></div>';
-							var $emailDialog = $('<div class="emailWrapper"></div>').html(emailFormHTML)
-								.dialog({
-									title: "Email Professor", 
-									width:470,
-									buttons: { 
-										"Cancel" : function() { $(this).dialog('close');}, 
-										"Send" : function() { 
-											$(this).dialog('close');
-											var $emailConfirmation = $('<div class="emailWrapper">Your email message has been sent!</div>')
-											.dialog({title:"Message Confirmation", width: 322, height: 158, buttons: { "OK" : function() { $(this).dialog('close');}}});
-										}
-									}
-								});   
-							});
-						}
-						 ,close : function() { $(".detailsWrapper").remove();}
+                         ,open : function() { 
+                          $tabs = $("#map-tabs").tabs(); $tabs.tabs("select", 0);
+                          $("#faculty-container img").click(function() { 
+                          var emailFormHTML = '<div id="emailLabels"><label for="fromAddress"><strong>From Address:</strong></label><div class="lblpad"/><label  for="toAddress"><strong>To Address:</strong></label><div class="lblpad"/><label  for="ccAddress"><strong>CC Address:</strong></label><div class="lblpad"/><label  for="emailSubject"><strong>Subject:</strong></label><div class="lblpad"/><label  for="emailBody"><strong>Body:</strong></label></div>'
+                                     +'<div id="emailInput"><input type="text" name="emailFrom" id="fromAddress" size="35" maxlength="60"><div class="inppad"/><input type="text" name="toAddress" id="toAddress" size="35" maxlength="60"><div class="inppad"/><input type="text" name="ccAddress" id="ccAddress" size="35" maxlength="60"><div class="inppad"/><input type="text" name="emailSubject" id="emailSubject" size="35" maxlength="60"><div class="inppad"/><textarea name="emailBody" id="emailBody" cols="33" maxlength="600" rows="6" /></div>';
+                          var $emailDialog = $('<div class="emailWrapper"></div>').html(emailFormHTML)
+                            .dialog({
+                              title: "Email Professor", 
+                              width:470,
+                              buttons: { 
+                                "Cancel" : function() { $(this).dialog('close');}, 
+                                "Send" : function() { 
+                                  $(this).dialog('close');
+                                  var $emailConfirmation = $('<div class="emailWrapper">Your email message has been sent!</div>')
+                                  .dialog({title:"Message Confirmation", width: 322, height: 158, buttons: { "OK" : function() { $(this).dialog('close');}}});
+                                }
+                              }
+                            });   
+                           });
+                         }
+                         ,close : function() { $(".detailsWrapper").remove();}
                         };
 
     var $dialog = $('<div class="detailsWrapper"></div>').html(detailsHTML).dialog(dialogOptions);
@@ -535,27 +520,44 @@ WAAG.closePrintPreview = function()
   $('#doPrint').remove();
 }
 
-WAAG.TextbooksList = function()
+WAAG.openTextbooksList = function()
 {
+  // Create Textbook List
+  var textbook_html = ''
+  + '<ul>'
+  + '<li>CS 411 - Database Systems The Complete Book <a href="http://www.amazon.com/Database-Systems-Complete-Book-GOAL/dp/0130319953"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/tis-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
+  + '<li>CS 465 - Human-Computer Interaction <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/tis-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
+  + '<li>CS 465 - The Design of Everyday Things <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/tis-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
+  + '<li>ECE 391 - Advanced UNIX Programming <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/tis-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
+  + '<li>ECE 391 - The Linux Kernel<a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/tis-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
+  + '</ul>'
+  + '<a href="#" onclick="addTextbookPrintCSS(); window.print(); removeTextbookPrintCSS(); return false;">Print Textbook List</a>'
+  ;
+
+
+  var dialogOptions = { autoOpen: false
+                       ,title:  'Textbook List'
+                       ,width:  530
+                       ,height: 330
+                       ,show :  'fade'
+                       ,modal:  true
+                       ,closeText: 'Close'
+                       ,open : function() { }
+                       //,close: function() { $("#textbooks-list").remove(); }
+                       //,buttons: {}
+                     };
+
+  var $dialog = $('<div id="textbook-list"></div>').html(textbook_html).dialog(dialogOptions);
+  $dialog.dialog('open');
+
+
   // Show textbook mode
-  l = document.createElement('link'); l.rel = 'stylesheet'; l.media = 'screen'; l.type='text/css'; l.href=WWW+'/css/textbook-preview.css'; l.id="textbook-preview-css";
+  /*l = document.createElement('link'); l.rel = 'stylesheet'; l.media = 'screen'; l.type='text/css'; l.href=WWW+'/css/textbook-preview.css?'+ut; l.id="textbook-preview-css";
   (document.getElementsByTagName('head')[0] || document.body).appendChild(l);
 
   l = document.createElement('link'); l.rel = 'stylesheet'; l.media = 'print'; l.type='text/css'; l.href=WWW+'/css/textbook-print.css'; l.id="textbook-print-css";
   (document.getElementsByTagName('head')[0] || document.body).appendChild(l);
-
-  // Attach nav & print controls
-  var back = '<a id="doBack" href="" onclick="WAAG.closeTextbookList(); return false;">&laquo; Back</a>';
-  var print = '<a id="doPrint" href="" onclick="window.print(); return false;">Print Calendar</a>';
-  $(back).insertBefore('#iea-schedule-header');
-  $(print).insertAfter('.datadisplaytable');
-
-  console.log('ok');
-}
-
-WAAG.closeTextbooksList = function()
-{
-  $('#textbook-preview-css').remove();
+  */
 }
 
 }; // end init()
