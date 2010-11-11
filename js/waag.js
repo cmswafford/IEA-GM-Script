@@ -429,8 +429,9 @@ function init()
     $("#dateSearch").detach().prependTo(".pagebodydiv");
     $("#dateSearch").prepend("<h5 class='ui-widget-header ui-corner-all'>Skip to Date</h5>");
     $("label[for=goto_id]").hide();
-    $('.pagebodydiv > span').append(' ').detach().appendTo($('#iea-schedule'));
-    $('.pagebodydiv > a').detach().appendTo($('#iea-schedule'));
+    $('.pagebodydiv > span').detach().appendTo($('#iea-schedule'));
+    $('.pagebodydiv > a').prepend(' ').detach().appendTo($('#iea-schedule'));
+    $('.pagebodydiv > br').remove();
   };
 
   WAAG.run();
@@ -448,31 +449,31 @@ function init()
     var detailsHTML = ''
       +'<div class="class-left"><span class="classHeading">Class Times - '+ WAAG.term + ' ' + WAAG.year + '</span><br>'+classTimes      
       +'<br/></div><div class="class-right"><div id="faculty-container"><span class="classHeading">Faculty</span><br/>'
-      +'Instructor: Professor Foobar <img src="'+WWW+'/images/email.png"><br>'
-      +'TA: John Doe <img src="'+WWW+'/images/email.png"><br></div>'
+      +'Instructor: <span class="course-instructor">Professor Foobar <img src="'+WWW+'/images/email.png"></span><br>'
+      +'TA: <span class="course-instructor">John Doe <img src="'+WWW+'/images/email.png"></span><br></div>'
       +'<div class="class-map-container ui-corner-all" id="map-container"><div class="class-map-tabs" id="map-tabs">'
-      +'  <ul><li><a href="#tabs-1">Aerial Map</a></li><li><a href="#tabs-2">Building</a></li><li><a href="#tabs-3">Classroom</a></li></ul>'
-      +'  <div id="tabs-1"><div class="class-map ui-corner-all"><img src="'+WWW+'/images/bing.map.png"></div>	</div>'
-      +'  <div id="tabs-2"><div class="class-map ui-corner-all"><img src="'+WWW+'/images/bing.map3.png"></div>	</div>'  
-      +'  <div id="tabs-3"><div class="class-map ui-corner-all"><img src="'+WWW+'/images/bing.map2.png"></div>	</div>'  
+      +'  <ul><li><a href="#tabs-1">Building Map</a></li><li><a href="#tabs-2">Floorplan</a></li></ul>'
+      +'  <div id="tabs-1"><div class="class-map ui-corner-all"><img src="'+WWW+'/images/bing.map.png"></div>	</div>'	  
+      +'  <div id="tabs-2"><div class="class-map ui-corner-all"><img src="'+WWW+'/images/bing.map2.png"></div>	</div>'  
       +'</div></div>'	  
       +'</div>'
-      +'<div class="class-reg"><span class="classHeading">Course Resources</span><br/>'
+      +'<div class="class-reg"><div class="course-resources"><span class="classHeading">Course Resources</span><br/>'
       +'<a class="courseWebsite" target="_blank" href="https://agora.cs.illinois.edu/display/cs465/Home">Course Website</a><br>'
-      +'Required Textbooks: <ul><li>Human Computer Interaction <img src="'+WWW+'/images/textbook.png"></li></ul><br>'
-      +'<a href="https://ui2web1.apps.uillinois.edu/BANPROD1/bwskfshd.P_CrseSchdDetl?crn='+WAAG.courses[course][j]['CRN']+'">More</a><br></div>';
+      +'Required Textbooks: <ul><li>Human Computer Interaction <img src="'+WWW+'/images/textbook.png"></li></ul></div>'
+	  +'<div class="course-location"><span class="classHeading">Course Location</span><br/>Siebel Center for Computer Science<br/>201 N. Goodwin Avenue<br/>Urbana, IL 61801'
+      +'<div class="course-detail"><a href="https://ui2web1.apps.uillinois.edu/BANPROD1/bwskfshd.P_CrseSchdDetl?crn='+WAAG.courses[course][j]['CRN']+'">More</a></div><br></div>';
 
     var dialogOptions = { autoOpen: false
                          ,title:  WAAG.courses[course][j]['course']+' - '+WAAG.courses[course][j]['section']
-                         ,width:  720
-                         ,height: 450
+                         ,width:  730
+                         ,height: 480
                          ,show: 'fade'
                          ,modal:  true
                          ,closeText: 'Close'
                          ,open : function() { 
                           $tabs = $("#map-tabs").tabs(); $tabs.tabs("select", 0);
-                          $("#faculty-container img").click(function() { 
-                          var emailFormHTML = '<div id="emailLabels"><label for="fromAddress"><strong>From Address:</strong></label><div class="lblpad"/><label  for="toAddress"><strong>To Address:</strong></label><div class="lblpad"/><label  for="ccAddress"><strong>CC Address:</strong></label><div class="lblpad"/><label  for="emailSubject"><strong>Subject:</strong></label><div class="lblpad"/><label  for="emailBody"><strong>Body:</strong></label></div>'
+                          $("#faculty-container .course-instructor").click(function() { 
+                          var emailFormHTML = '<div id="emailLabels"><label for="fromAddress"><strong>From Address:</strong></label><div class="lblpad"/><label  for="toAddress"><strong>To Address:</strong></label><div class="lblpad"/><label for="ccAddress"><strong>CC Address:</strong></label><div class="lblpad"/><label  for="emailSubject"><strong>Subject:</strong></label><div class="lblpad"/><label  for="emailBody"><strong>Body:</strong></label></div>'
                                      +'<div id="emailInput"><input type="text" name="emailFrom" id="fromAddress" size="35" maxlength="60"><div class="inppad"/><input type="text" name="toAddress" id="toAddress" size="35" maxlength="60"><div class="inppad"/><input type="text" name="ccAddress" id="ccAddress" size="35" maxlength="60"><div class="inppad"/><input type="text" name="emailSubject" id="emailSubject" size="35" maxlength="60"><div class="inppad"/><textarea name="emailBody" id="emailBody" cols="33" maxlength="600" rows="6" /></div>';
                           var $emailDialog = $('<div class="emailWrapper"></div>').html(emailFormHTML)
                             .dialog({
@@ -487,8 +488,8 @@ function init()
                                 }
                               }
                             });   
-                           });
-                         }
+                          });
+                          }
                          ,close : function() { $(".detailsWrapper").remove();}
                         };
 
