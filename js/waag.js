@@ -464,7 +464,7 @@ function init()
       +'<div class="course-detail"><a href="https://ui2web1.apps.uillinois.edu/BANPROD1/bwskfshd.P_CrseSchdDetl?crn='+WAAG.courses[course][j]['CRN']+'">More</a></div><br></div>';
 
     var dialogOptions = { autoOpen: false
-                         ,title:  WAAG.courses[course][j]['course']+' - '+WAAG.courses[course][j]['section']
+                         ,title:  WAAG.courses[course][j]['course']+' - '+WAAG.courses[course][j]['section']+' - Class Information'
                          ,width:  730
                          ,height: 480
                          ,show: 'fade'
