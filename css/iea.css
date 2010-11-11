@@ -50,6 +50,10 @@ div.class-map-container { float:right; border:2px solid gray; width:305px; paddi
 div.class-map-tabs { width:340px; height:250px;}
 div.class-map { border:2px solid black;width:300px;height:200px; }
 div.class-map  img { width:300px;height:200px; }
+div.course-location { margin-top:15px;}
+div.course-detail { margin-top:10px;}
+span.course-instructor { text-decoration:none; cursor:pointer;}
+span.course-instructor:hover{ text-decoration:underline; cursor:pointer;}
 div.detailsWrapper ul { margin:0;}
 div.detailsWrapper ul li { padding:0;margin:0;}
 #schedule-nav a, #goto-date input , .headerlinksdiv2 input{ font-size: .9em;}
