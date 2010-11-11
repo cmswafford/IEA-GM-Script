@@ -434,7 +434,7 @@ function init()
 	$("#goto_id, #keyword_in_id").addClass("ui-corner-all");
 	$("#iea-schedule form:eq(0)").wrap("<div id='dateSearch' class='ui-corner-all'></div>");
     $("#dateSearch").detach().prependTo(".pagebodydiv");
-    $("#dateSearch").prepend("<h5 class='ui-widget-header ui-corner-all'>Search Schedule by Date</h5>");
+    $("#dateSearch").prepend("<h5 class='ui-widget-header ui-corner-all'>Skip to Date</h5>");
     $("label[for=goto_id]").hide();
 	$(".pagebodydiv>a, .pagebodydiv>br, .pagebodydiv>span").remove().clone().appendTo('.pagebodydiv');
 	
@@ -469,14 +469,14 @@ function init()
       +'<div class="class-reg"><div class="course-resources"><span class="classHeading">Course Resources</span><br/>'
       +'<a class="courseWebsite" target="_blank" href="https://agora.cs.illinois.edu/display/cs465/Home">Course Website</a><br>'
       +'Required Textbooks: <ul><li>Human Computer Interaction <img src="'+WWW+'/images/textbook.png"></li></ul></div>'
-	  +'<div class="course-location"><span class="classHeading">Course Location</span><br/>Siebel Center for Computer Science<br/>201 N. Goodwin Avenue<br/>Urbana, IL 61801'
+	  +'<div class="course-location"><span class="classHeading">Course Location</span><br/>Siebel Center for Computer Science<br/>201 N. Goodwin Avenue<br/>Urbana, IL 61801<br/>Room: ' + WAAG.courses[course][j]['room'] + '</div>'
       +'<div class="course-detail"><a href="https://ui2web1.apps.uillinois.edu/BANPROD1/bwskfshd.P_CrseSchdDetl?crn='+WAAG.courses[course][j]['CRN']+'">More</a></div><br></div>';
 
     var dialogOptions = { autoOpen: false
                          ,title:  WAAG.courses[course][j]['course']+' - '+WAAG.courses[course][j]['section']
                          ,width:  730
                          ,height: 480
-						 ,zIndex: 500
+						 //,zIndex: 500
                          ,show: 'fade'
                          ,modal:  true
                          ,closeText: 'Close'
@@ -501,10 +501,7 @@ function init()
 							}); 
 							// load bing location
 							LoadMap('Siebel Center for Computer Science, 201 N. Goodwin Avenue, Urbana, IL 61801');	
-							// tooltip fixes
-							$(".ero-leftBeak, .ero-progressAnimation").css("z-index","1001");
-							$(".ui-widget-overlay").css("z-index","2");
-							$(".ui-dialog").css("z-index","3");
+							 
 						}
 						 ,close : function() { $(".detailsWrapper").remove();}
                         };

@@ -38,7 +38,7 @@ a:visited { color: blue !important;}
 
 h3#iea-schedule-header { margin: 0 auto 0 auto; padding: 0; text-align: center; font-weight: bold; width: 100%; clear: both; line-height:1.8em;}
 
-#iea-schedule { margin: 0 auto; width: 780px; float:right;padding:30px;}
+#iea-schedule { margin: 0 auto; width: 780px; float:left;padding:30px;}
 
 #textbooks-page { display: none; }
 
@@ -48,8 +48,7 @@ div.class-reg { float: left;clear:left; width:300px;}
 div.class-right { float: right; padding-right:10px;}
 div.class-map-container { float:right; border:2px solid gray; width:305px; padding-right:45px;margin-top:30px; }
 div.class-map-tabs { width:340px; height:250px;}
-div.class-map { border:2px solid black;width:300px;height:200px;z-index:9999999; }
-.pinTitle { z-index: 9999999;}
+div.class-map { border:2px solid black;width:300px;height:200px; }
 div.class-map  img { width:300px;height:200px; }
 div.course-location { margin-top:15px;}
 div.course-detail { margin-top:10px;}
@@ -59,7 +58,7 @@ div.detailsWrapper ul { margin:0;}
 div.detailsWrapper ul li { padding:0;margin:0;}
 #schedule-nav a, #goto-date input , .headerlinksdiv2 input{ font-size: .9em;}
 #goto-date input, .headerlinksdiv2 input { padding:2px !important;margin:2px !important;}
-#dateSearch { float:right;border:1px solid gray;padding:5px;margin-top:30px;}
+#dateSearch { float:left;border:1px solid gray;padding:5px;margin-top:30px;}
 #dateSearch h5 { padding:2px;margin:0;padding-left:10px;}
 .warningtext { width:250px;}
 

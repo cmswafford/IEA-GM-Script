@@ -38,8 +38,8 @@ function clearMap() {
 function FindCallback(layer, resultsArray) {
    var pin = new VEShape(VEShapeType.Pushpin, map.GetCenter());
    //Make a nice Pushpin shape with a title and description
-   pin.SetTitle("<span class=\"pinTitle\"> " + escape('Seibel Center') + "</span>");
-   pin.SetDescription("<p class=\"pinDetails\">"+escape('Urbana, IL') + "</p>");
+   // pin.SetTitle("<span class=\"pinTitle\"> " + escape('Seibel Center') + "</span>");
+   // pin.SetDescription("<p class=\"pinDetails\">"+escape('Urbana, IL') + "</p>");
    map.AddShape(pin);
 }
 
