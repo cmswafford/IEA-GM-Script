@@ -5,12 +5,12 @@ table.datadisplaytable td div.day-container{ position: relative; margin:0; paddi
 table.datadisplaytable td div.class { position: absolute; margin: 0 auto; padding: 0; border: 1px solid #000; text-align: center; width: 98%; cursor:pointer;}
 #courses h3 { margin:0; padding:0; height: 60px; vertical-align: top; }
 
-.course0 { background-color: #f961A9; }
-.course1 { background-color: #f9B461; }
-.course2 { background-color: #61E6f9; }
-.course3 { background-color: #9E61F9; }
-.course4 { background-color: #bbf961; }
-.course5 { background-color: #6197F9; }
+.course0 { background-color: #003366; color: #fff; } /* Dark blue */
+.course1 { background-color: #ff6700; } /* Dark orange */
+.course2 { background-color: #0061c1; color: #fff; } /* Easter blue */
+.course3 { background-color: #ffefb4; } /* Tan */
+.course4 { background-color: #e0f0ff; }
+.course5 { background-color: #ff8a00; } /* medium orange */
 
 .gray { background-color: #eaeaea; }
 
@@ -25,7 +25,7 @@ a#add-to-google { float: right; margin: 10px 1px 5px 0; }
 
 /* goto box */
 #goto-date { float: right; }
-#goto_id { border: 1px solid #000; background: url('../images/calendar-icon.png') no-repeat right; }
+#goto_id { padding-right: 5px; border: 1px solid #000; background: url('../images/calendar-icon.png') no-repeat right; }
 /* Input boxes */
 input[type='submit'] { border: 1px solid #000; background-color: #c0d8f0; }
 input[type='input'] { border: 1px solid #000; } 

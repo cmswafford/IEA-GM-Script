@@ -203,24 +203,30 @@ function init()
     WAAG.term = WAAG.terms[mon];
     WAAG.year = $t.substr(-4,4);
     WAAG.day = $t.substr(4,2);
-	var startDate = new Date(WAAG.mm+'/'+WAAG.day+'/'+WAAG.year); // get date start
-	WAAG.StartDate = startDate; // log initial start date
-	WAAG.MonDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
-	WAAG.TueDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
-	WAAG.WedDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
-	WAAG.WedDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
-	WAAG.ThuDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
-	WAAG.FriDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); 
+
+    var startDate = new Date(WAAG.mm+'/'+WAAG.day+'/'+WAAG.year); // get date start
+    WAAG.StartDate = startDate; // log initial start date
+    WAAG.MonDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
+    WAAG.TueDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
+    WAAG.WedDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
+    WAAG.WedDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
+    WAAG.ThuDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
+    WAAG.FriDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); 
+
+    // Get navigation links
     var previousLink = $($('.pagebodydiv .plaintable a')[0]).attr('href');
     var nextLink = $($('.pagebodydiv .plaintable a')[1]).attr('href');
+    // Now delete their POS nav elements
     $($('.pagebodydiv .plaintable')[1]).remove();
 
+    // Add the header
     $iea.append('<h3 id="iea-schedule-header" class="ui-widget-header">'+WAAG.term+' '+WAAG.year+'</h3>');
 
-    $iea.append('<p id="schedule-nav"><a style="float:left;" href="'+previousLink+'">&laquo; Previous</a> <a style="float:right;" href="'+nextLink+'">Next &raquo;</a></p>');
+    // Add the navigation buttons
+    $iea.append('<p id="schedule-nav"><a class="iea-cal-nav" style="float:left;" href="'+previousLink+'">&laquo; Previous</a> <a class="iea-cal-nav" style="float:right;" href="'+nextLink+'">Next &raquo;</a></p>');
 
-    // Add Print & Google links
-    $iea.append('<div id="schedule-footer"><a id="print-schedule" href="" title="Print Preview" onclick="WAAG.printPreview(); return false;">Print Preview</a><span class="link-separator"> | </span><a title="View Textbook List" id="list-textbooks">Textbook List</a> <a id="add-to-google" title="Add to Google Calendar" href="http://www.google.com/calendar/render?cid=http%3A%2F%2Fi'+WWW+'%2Fgoogle.cal" target="_blank"><img src="http://www.google.com/calendar/images/ext/gc_button6.gif" border=0></a></div>');
+    // Add Print Preview & Google links
+    $iea.append('<div id="schedule-footer"><a id="print-schedule" href="" title="Print Preview" onclick="WAAG.printPreview(); return false;">Print Preview</a><span class="link-separator"> | </span><a onclick="WAAG.TextbooksList();" title="View Textbook List" id="list-textbooks">Textbook List</a> <a id="add-to-google" title="Add to Google Calendar" href="http://www.google.com/calendar/render?cid=http%3A%2F%2Fi'+WWW+'%2Fgoogle.cal" target="_blank"><img src="http://www.google.com/calendar/images/ext/gc_button6.gif" border=0></a></div>');
 
     // Create Textbook List
     var textbooks = ''
@@ -390,7 +396,7 @@ function init()
     WAAG.courses = courses; // Update the object
 
     // Make new HTML header
-    $table.append('<thead><tr><th></th><th>Monday <span id="start-date">'+WAAG.MonDate+'</span></th><th class="gray">Tuesday '+WAAG.TueDate+'</th><th>Wednesday '+WAAG.WedDate+'</th><th class="gray">Thursday '+WAAG.ThuDate+'</th><th>Friday '+WAAG.FriDate+'</th></tr></head>');
+    $table.append('<thead><tr><th></th><th>Mon <span>'+WAAG.MonDate+'</span></th><th class="gray">Tues <span>'+WAAG.TueDate+'</span></th><th>Wed <span>'+WAAG.WedDate+'</span></th><th class="gray">Thurs <span>'+WAAG.ThuDate+'</span></th><th>Fri <span>'+WAAG.FriDate+'</span></th></tr></head>');
 
     //tbody = '<tbody><tr><th><p>'+minTime.split(':')[0]+':00</p></th>';
     tbody = '<tbody><tr id="courses"><th>';
@@ -428,7 +434,7 @@ function init()
     // Finally re-add the new table
     $table.append(tbody);
 	
-	$("#schedule-nav a, #goto-date input:eq(2), .headerlinksdiv2 input:eq(1)").button(); // next/prev/go buttons
+	  $("#schedule-nav a, #goto-date input:eq(2), .headerlinksdiv2 input:eq(1)").button(); // next/prev/go buttons
 
   };
 
@@ -447,8 +453,8 @@ function init()
     var detailsHTML = ''
       +'<div class="class-left"><span class="classHeading">Class Times - '+ WAAG.term + ' ' + WAAG.year + '</span><br>'+classTimes      
       +'<br/></div><div class="class-right"><span class="classHeading">Faculty</span><br/>'
-      +'Instructor: Professor Foobar <img src="'+WWW+'/images/email.png"><br>'
-      +'TA: John Doe <img src="'+WWW+'/images/email.png"><br></div>'
+      +'Instructor: Professor Bailey <img src="'+WWW+'/images/email.png"><br>'
+      +'TA: Moushumi (Nila) Sharmin <img src="'+WWW+'/images/email.png"><br></div>'
       +'<div class="class-reg"><span class="classHeading">Course Resources</span><br/>'
       +'<a class="courseWebsite" target="_blank" href="https://agora.cs.illinois.edu/display/cs465/Home">Course Website</a><br>'
       +'Required Textbooks: <ul><li>Human Computer Interaction <img src="'+WWW+'/images/textbook.png"></li></ul><br>'
@@ -482,7 +488,6 @@ WAAG.printPreview = function()
   var print = '<a id="doPrint" href="" onclick="window.print(); return false;">Print Calendar</a>';
   $(back).insertBefore('#iea-schedule-header');
   $(print).insertAfter('.datadisplaytable');
-  $('#start-date').hide();
 }
 
 WAAG.closePrintPreview = function()
@@ -492,23 +497,32 @@ WAAG.closePrintPreview = function()
 
   $('#doBack').remove();
   $('#doPrint').remove();
-  $('#start-date').show();
-  
 }
 
-WAAG.Textbooks = function()
+WAAG.TextbooksList = function()
 {
+  // Show textbook mode
+  l = document.createElement('link'); l.rel = 'stylesheet'; l.media = 'screen'; l.type='text/css'; l.href=WWW+'/css/textbook-preview.css'; l.id="textbook-preview-css";
+  (document.getElementsByTagName('head')[0] || document.body).appendChild(l);
+
+  l = document.createElement('link'); l.rel = 'stylesheet'; l.media = 'print'; l.type='text/css'; l.href=WWW+'/css/textbook-print.css'; l.id="textbook-print-css";
+  (document.getElementsByTagName('head')[0] || document.body).appendChild(l);
+
+  // Attach nav & print controls
+  var back = '<a id="doBack" href="" onclick="WAAG.closeTextbookList(); return false;">&laquo; Back</a>';
+  var print = '<a id="doPrint" href="" onclick="window.print(); return false;">Print Calendar</a>';
+  $(back).insertBefore('#iea-schedule-header');
+  $(print).insertAfter('.datadisplaytable');
+
+  console.log('ok');
 }
 
 WAAG.closeTextbooksList = function()
 {
+  $('#textbook-preview-css').remove();
 }
 
 }; // end init()
 
 })(); // Call anonymous function immediately
-
-
-
-
 

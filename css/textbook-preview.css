@@ -14,6 +14,6 @@ ul { display: none; }
 #doBack { display: block; }
 
 /* Show textbook list */
-#textbooks-page { display: block; }
+#textbooks-page { display: block !important; }
 li { list-style: none; }
 img { border: 0; }
