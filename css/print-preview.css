@@ -8,6 +8,8 @@ a#add-to-google { display: none; }
 body { background: none; }
 a { display: none; }
 form { display: none; }
+thead span { display: none; }
+.iea-cal-nav { display: none; }
 
 /* Show the schedule */
 #iea-schedule { display: block !important;float:left;margin-left:150px; }

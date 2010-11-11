@@ -1,11 +1,11 @@
 @import url('iea.css');
 
 /* Delete everything */
-div { display: none; }
+div{ display: none }
 table.plaintable{ display: none; }
 a#add-to-google { display: none; }
 .warningtext { display: none; }
-body { background: none; }
+body { background: transparent; }
 a { display: none; }
 form { display: none; }
 ul { display: none; }
@@ -14,6 +14,8 @@ ul { display: none; }
 #doBack { display: block; }
 
 /* Show textbook list */
-#textbooks-page { display: block; }
+div#textbooks-page { display: block !important; }
+div#textbooks-page a { display: inline; }
+div#textbooks-page ul { display: block; }
 li { list-style: none; }
 img { border: 0; }

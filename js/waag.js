@@ -1,4 +1,7 @@
 // Add loader and include CSS
+
+var ut = Math.round(new Date().getTime() / 1000);
+
 (function(){
   var l = document.createElement('link'); l.rel = 'stylesheet'; l.media = 'screen'; l.type='text/css'; l.href=WWW+'/css/iea.css'; l.id="iea-css";
   (document.getElementsByTagName('head')[0] || document.body).appendChild(l);
@@ -203,40 +206,30 @@ function init()
     WAAG.term = WAAG.terms[mon];
     WAAG.year = $t.substr(-4,4);
     WAAG.day = $t.substr(4,2);
-	var startDate = new Date(WAAG.mm+'/'+WAAG.day+'/'+WAAG.year); // get date start
-	WAAG.StartDate = startDate; // log initial start date
-	WAAG.MonDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
-	WAAG.TueDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
-	WAAG.WedDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
-	WAAG.WedDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
-	WAAG.ThuDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
-	WAAG.FriDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); 
+
+    var startDate = new Date(WAAG.mm+'/'+WAAG.day+'/'+WAAG.year); // get date start
+    WAAG.StartDate = startDate; // log initial start date
+    WAAG.MonDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
+    WAAG.TueDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
+    WAAG.WedDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
+    WAAG.WedDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
+    WAAG.ThuDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
+    WAAG.FriDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); 
+
+    // Get navigation links
     var previousLink = $($('.pagebodydiv .plaintable a')[0]).attr('href');
     var nextLink = $($('.pagebodydiv .plaintable a')[1]).attr('href');
+    // Now delete their POS nav elements
     $($('.pagebodydiv .plaintable')[1]).remove();
 
+    // Add the header
     $iea.append('<h3 id="iea-schedule-header" class="ui-widget-header ui-corner-top">'+WAAG.term+' '+WAAG.year+'</h3>');
 
-    $iea.append('<p id="schedule-nav"><a style="float:left;" href="'+previousLink+'">&laquo; Previous</a> <a style="float:right;" href="'+nextLink+'">Next &raquo;</a></p>');
+    // Add the navigation buttons
+    $iea.append('<p id="schedule-nav"><a class="iea-cal-nav" style="float:left;" href="'+previousLink+'">&laquo; Previous</a> <a class="iea-cal-nav" style="float:right;" href="'+nextLink+'">Next &raquo;</a></p>');
 
-    // Add Print & Google links
-    $iea.append('<div id="schedule-footer"><a id="print-schedule" href="" title="Print Preview" onclick="WAAG.printPreview(); return false;">Print Preview</a><span class="link-separator"> | </span><a title="View Textbook List" id="list-textbooks">Textbook List</a> <a id="add-to-google" title="Add to Google Calendar" href="http://www.google.com/calendar/render?cid=http%3A%2F%2Fi'+WWW+'%2Fgoogle.cal" target="_blank"><img src="http://www.google.com/calendar/images/ext/gc_button6.gif" border=0></a></div>');
-
-    // Create Textbook List
-    var textbooks = ''
-    + '<div id="textbooks-page">'
-    + '<a href="#" onclick="closeTextbook(); return false;">Textbook</a>'
-    + '<ul id="textbook-list">'
-    + '<li>CS 411 - Database Systems The Complete Book <a href="http://www.amazon.com/Database-Systems-Complete-Book-GOAL/dp/0130319953"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
-    + '<li>CS 465 - Human-Computer Interaction <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/tis-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
-    + '<li>CS 465 - The Design of Everyday Things <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/tis-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
-    + '<li>ECE 391 - Advanced UNIX Programming <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/tis-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
-    + '<li>ECE 391 - The Linux Kernel<a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/tis-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
-    + '</ul>'
-    + '<a href="#" onclick="window.print(); return false;">Print</a>'
-    + '</div>'
-    ;
-    $iea.append(textbooks);
+    // Add Print Preview & Google links
+    $iea.append('<div id="schedule-footer"><a id="print-schedule" href="" title="Print Preview" onclick="WAAG.printPreview(); return false;">Print Preview</a><span class="link-separator"> | </span><a onclick="WAAG.openTextbooksList();" title="View Textbook List" id="list-textbooks">Textbook List</a> <a id="add-to-google" title="Add to Google Calendar" href="http://www.google.com/calendar/render?cid=http%3A%2F%2Fi'+WWW+'%2Fgoogle.cal" target="_blank"><img src="http://www.google.com/calendar/images/ext/gc_button6.gif" border=0></a></div>');
 
     // Get all the data
     var $table = WAAG.$('table.datadisplaytable')
@@ -390,7 +383,7 @@ function init()
     WAAG.courses = courses; // Update the object
 
     // Make new HTML header
-    $table.append('<thead><tr><th></th><th>Monday <span id="start-date">'+WAAG.MonDate+'</span></th><th class="gray">Tuesday '+WAAG.TueDate+'</th><th>Wednesday '+WAAG.WedDate+'</th><th class="gray">Thursday '+WAAG.ThuDate+'</th><th>Friday '+WAAG.FriDate+'</th></tr></head>');
+    $table.append('<thead><tr><th></th><th>Mon <span>'+WAAG.MonDate+'</span></th><th class="gray">Tues <span>'+WAAG.TueDate+'</span></th><th>Wed <span>'+WAAG.WedDate+'</span></th><th class="gray">Thurs <span>'+WAAG.ThuDate+'</span></th><th>Fri <span>'+WAAG.FriDate+'</span></th></tr></head>');
 
     //tbody = '<tbody><tr><th><p>'+minTime.split(':')[0]+':00</p></th>';
     tbody = '<tbody><tr id="courses"><th>';
@@ -428,19 +421,23 @@ function init()
     // Finally re-add the new table
     $table.append(tbody);
 	
-	// Final Processing //
-	$("#schedule-nav a, #goto-date input:eq(2), .headerlinksdiv2 input:eq(1)").button(); // next/prev/go buttons
-	$table.addClass("ui-corner-all");
-	$("#goto_id, #keyword_in_id").addClass("ui-corner-all");
-	$("#iea-schedule form:eq(0)").wrap("<div id='dateSearch' class='ui-corner-all'></div>");
+    // Final Processing //
+    $("#schedule-nav a, #goto-date input:eq(2), .headerlinksdiv2 input:eq(1)").button(); // next/prev/go buttons
+    $table.addClass("ui-corner-all");
+    $("#goto_id, #keyword_in_id").addClass("ui-corner-all");
+    $("#iea-schedule form:eq(0)").wrap("<div id='dateSearch' class='ui-corner-all'></div>");
     $("#dateSearch").detach().prependTo(".pagebodydiv");
     $("#dateSearch").prepend("<h5 class='ui-widget-header ui-corner-all'>Skip to Date</h5>");
     $("label[for=goto_id]").hide();
-	$(".pagebodydiv>a, .pagebodydiv>br, .pagebodydiv>span").remove().clone().appendTo('.pagebodydiv');
 	
 	// script loading
 	$.getScript("https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.3&s=1");
 	$.getScript(WWW+'/js/bing.map.js');	
+
+    $('.pagebodydiv > span').detach().appendTo($('#iea-schedule'));
+    $('.pagebodydiv > a').css('margin-left', '5px').detach().appendTo($('#iea-schedule'));
+    $('.pagebodydiv > br').remove();
+
   };
 
   WAAG.run();
@@ -460,12 +457,21 @@ function init()
       +'<br/></div><div class="class-right"><div id="faculty-container"><span class="classHeading">Faculty</span><br/>'
       +'Instructor: <span class="course-instructor">Professor Foobar <img src="'+WWW+'/images/email.png"></span><br>'
       +'TA: <span class="course-instructor">John Doe <img src="'+WWW+'/images/email.png"></span><br></div>'
+<<<<<<< HEAD
 	  +'<div class="class-map-container ui-corner-all" id="map-container"><div class="class-map-tabs" id="map-tabs">'
 	  +'  <ul><li><a href="#tabs-1">Building Map</a></li><li><a href="#tabs-2">Floorplan</a></li></ul>'
 	  +'  <div id="tabs-1"><div class="ui-corner-all" ><div id="theMap1" style="width:310px;height:200px;position:relative;clear:both;">hello everyone</div></div>	</div>'	  
 	  +'  <div id="tabs-2"><div class="class-map ui-corner-all"><img src="'+WWW+'/images/bing.map2.png"></div>	</div>'  
 	  +'</div></div>'	  
 	  +'</div>'
+=======
+      +'<div class="class-map-container ui-corner-all" id="map-container"><div class="class-map-tabs" id="map-tabs">'
+      +'  <ul><li><a href="#tabs-1">Building Map</a></li><li><a href="#tabs-2">Floorplan</a></li></ul>'
+      +'  <div id="tabs-1"><div class="class-map ui-corner-all"><img src="'+WWW+'/images/bing.map.png"></div>	</div>'	  
+      +'  <div id="tabs-2"><div class="class-map ui-corner-all"><img src="'+WWW+'/images/bing.map2.png"></div>	</div>'  
+      +'</div></div>'	  
+      +'</div>'
+>>>>>>> 4414d790068673d73ac8b86bfd5ebb438df1fce8
       +'<div class="class-reg"><div class="course-resources"><span class="classHeading">Course Resources</span><br/>'
       +'<a class="courseWebsite" target="_blank" href="https://agora.cs.illinois.edu/display/cs465/Home">Course Website</a><br>'
       +'Required Textbooks: <ul><li>Human Computer Interaction <img src="'+WWW+'/images/textbook.png"></li></ul></div>'
@@ -480,6 +486,7 @@ function init()
                          ,show: 'fade'
                          ,modal:  true
                          ,closeText: 'Close'
+<<<<<<< HEAD
 						 ,open : function() { 
 							$tabs = $("#map-tabs").tabs(); $tabs.tabs("select", 0);
 							$("#faculty-container .course-instructor").click(function() { 
@@ -504,6 +511,29 @@ function init()
 							 
 						}
 						 ,close : function() { $(".detailsWrapper").remove();}
+=======
+                         ,open : function() { 
+                          $tabs = $("#map-tabs").tabs(); $tabs.tabs("select", 0);
+                          $("#faculty-container .course-instructor").click(function() { 
+                          var emailFormHTML = '<div id="emailLabels"><label for="fromAddress"><strong>From Address:</strong></label><div class="lblpad"/><label  for="toAddress"><strong>To Address:</strong></label><div class="lblpad"/><label for="ccAddress"><strong>CC Address:</strong></label><div class="lblpad"/><label  for="emailSubject"><strong>Subject:</strong></label><div class="lblpad"/><label  for="emailBody"><strong>Body:</strong></label></div>'
+                                     +'<div id="emailInput"><input type="text" name="emailFrom" id="fromAddress" size="35" maxlength="60"><div class="inppad"/><input type="text" name="toAddress" id="toAddress" size="35" maxlength="60"><div class="inppad"/><input type="text" name="ccAddress" id="ccAddress" size="35" maxlength="60"><div class="inppad"/><input type="text" name="emailSubject" id="emailSubject" size="35" maxlength="60"><div class="inppad"/><textarea name="emailBody" id="emailBody" cols="33" maxlength="600" rows="6" /></div>';
+                          var $emailDialog = $('<div class="emailWrapper"></div>').html(emailFormHTML)
+                            .dialog({
+                              title: "Email Professor", 
+                              width:470,
+                              buttons: { 
+                                "Cancel" : function() { $(this).dialog('close');}, 
+                                "Send" : function() { 
+                                  $(this).dialog('close');
+                                  var $emailConfirmation = $('<div class="emailWrapper">Your email message has been sent!</div>')
+                                  .dialog({title:"Message Confirmation", width: 322, height: 158, buttons: { "OK" : function() { $(this).dialog('close');}}});
+                                }
+                              }
+                            });   
+                          });
+                          }
+                         ,close : function() { $(".detailsWrapper").remove();}
+>>>>>>> 4414d790068673d73ac8b86bfd5ebb438df1fce8
                         };
 
     var $dialog = $('<div class="detailsWrapper"></div>').html(detailsHTML).dialog(dialogOptions);
@@ -523,8 +553,7 @@ WAAG.printPreview = function()
   var print = '<a id="doPrint" href="" onclick="window.print(); return false;">Print Calendar</a>';
   $(back).insertBefore('#iea-schedule-header');
   $(print).insertAfter('.datadisplaytable');
-  $('#start-date').hide();
- }
+}
 
 WAAG.closePrintPreview = function()
 {
@@ -533,23 +562,49 @@ WAAG.closePrintPreview = function()
 
   $('#doBack').remove();
   $('#doPrint').remove();
-  $('#start-date').show();
-  
 }
 
-WAAG.Textbooks = function()
+WAAG.openTextbooksList = function()
 {
-}
+  // Create Textbook List
+  var textbook_html = ''
+  + '<ul>'
+  + '<li>CS 411 - Database Systems The Complete Book <a href="http://www.amazon.com/Database-Systems-Complete-Book-GOAL/dp/0130319953"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/tis-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
+  + '<li>CS 465 - Human-Computer Interaction <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/tis-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
+  + '<li>CS 465 - The Design of Everyday Things <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/tis-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
+  + '<li>ECE 391 - Advanced UNIX Programming <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/tis-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
+  + '<li>ECE 391 - The Linux Kernel<a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/tis-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
+  + '</ul>'
+  + '<a href="#" onclick="addTextbookPrintCSS(); window.print(); removeTextbookPrintCSS(); return false;">Print Textbook List</a>'
+  ;
 
-WAAG.closeTextbooksList = function()
-{
+
+  var dialogOptions = { autoOpen: false
+                       ,title:  'Textbook List'
+                       ,width:  530
+                       ,height: 330
+                       ,show :  'fade'
+                       ,modal:  true
+                       ,closeText: 'Close'
+                       ,open : function() { }
+                       //,close: function() { $("#textbooks-list").remove(); }
+                       //,buttons: {}
+                     };
+
+  var $dialog = $('<div id="textbook-list"></div>').html(textbook_html).dialog(dialogOptions);
+  $dialog.dialog('open');
+
+
+  // Show textbook mode
+  /*l = document.createElement('link'); l.rel = 'stylesheet'; l.media = 'screen'; l.type='text/css'; l.href=WWW+'/css/textbook-preview.css?'+ut; l.id="textbook-preview-css";
+  (document.getElementsByTagName('head')[0] || document.body).appendChild(l);
+
+  l = document.createElement('link'); l.rel = 'stylesheet'; l.media = 'print'; l.type='text/css'; l.href=WWW+'/css/textbook-print.css'; l.id="textbook-print-css";
+  (document.getElementsByTagName('head')[0] || document.body).appendChild(l);
+  */
 }
 
 }; // end init()
 
 })(); // Call anonymous function immediately
-
-
-
-
 
