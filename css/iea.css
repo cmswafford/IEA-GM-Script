@@ -38,7 +38,7 @@ a:visited { color: blue !important;}
 
 h3#iea-schedule-header { margin: 0 auto 0 auto; padding: 0; text-align: center; font-weight: bold; width: 100%; clear: both; line-height:1.8em;}
 
-#iea-schedule { margin: 0 auto; width: 780px; float:right;padding:30px;}
+#iea-schedule { margin: 0 auto; width: 780px; float:left;padding:30px;}
 
 #textbooks-page { display: none; }
 
@@ -58,8 +58,7 @@ div.detailsWrapper ul { margin:0;}
 div.detailsWrapper ul li { padding:0;margin:0;}
 #schedule-nav a, #goto-date input , .headerlinksdiv2 input{ font-size: .9em;}
 #goto-date input, .headerlinksdiv2 input { padding:2px !important;margin:2px !important;}
-
-#dateSearch { float:right;border:1px solid gray;padding:5px;margin-top:30px;}
+#dateSearch { float:left;border:1px solid gray;padding:5px;margin-top:30px;}
 #dateSearch h5 { padding:2px;margin:0;padding-left:10px;}
 .warningtext { width:250px;}
 
