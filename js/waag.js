@@ -430,7 +430,7 @@ function init()
     $("#dateSearch").prepend("<h5 class='ui-widget-header ui-corner-all'>Skip to Date</h5>");
     $("label[for=goto_id]").hide();
     $('.pagebodydiv > span').detach().appendTo($('#iea-schedule'));
-    $('.pagebodydiv > a').prepend(' ').detach().appendTo($('#iea-schedule'));
+    $('.pagebodydiv > a').css('margin-left', '5px').detach().appendTo($('#iea-schedule'));
     $('.pagebodydiv > br').remove();
   };
 
