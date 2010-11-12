@@ -212,7 +212,6 @@ function init()
     WAAG.MonDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
     WAAG.TueDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
     WAAG.WedDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
-    WAAG.WedDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
     WAAG.ThuDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); startDate.setDate(startDate.getDate()+1);
     WAAG.FriDate = (startDate.getMonth()+1)+'/'+ (startDate.getDate()); 
 
@@ -457,21 +456,12 @@ function init()
       +'<br/></div><div class="class-right"><div id="faculty-container"><span class="classHeading">Faculty</span><br/>'
       +'Instructor: <span class="course-instructor">Professor Foobar <img src="'+WWW+'/images/email.png"></span><br>'
       +'TA: <span class="course-instructor">John Doe <img src="'+WWW+'/images/email.png"></span><br></div>'
-<<<<<<< HEAD
-	  +'<div class="class-map-container ui-corner-all" id="map-container"><div class="class-map-tabs" id="map-tabs">'
-	  +'  <ul><li><a href="#tabs-1">Building Map</a></li><li><a href="#tabs-2">Floorplan</a></li></ul>'
-	  +'  <div id="tabs-1"><div class="ui-corner-all" ><div id="theMap1" style="width:310px;height:200px;position:relative;clear:both;">hello everyone</div></div>	</div>'	  
-	  +'  <div id="tabs-2"><div class="class-map ui-corner-all"><img src="'+WWW+'/images/bing.map2.png"></div>	</div>'  
-	  +'</div></div>'	  
-	  +'</div>'
-=======
       +'<div class="class-map-container ui-corner-all" id="map-container"><div class="class-map-tabs" id="map-tabs">'
       +'  <ul><li><a href="#tabs-1">Building Map</a></li><li><a href="#tabs-2">Floorplan</a></li></ul>'
       +'  <div id="tabs-1"><div class="class-map ui-corner-all"><img src="'+WWW+'/images/bing.map.png"></div>	</div>'	  
       +'  <div id="tabs-2"><div class="class-map ui-corner-all"><img src="'+WWW+'/images/bing.map2.png"></div>	</div>'  
       +'</div></div>'	  
       +'</div>'
->>>>>>> 4414d790068673d73ac8b86bfd5ebb438df1fce8
       +'<div class="class-reg"><div class="course-resources"><span class="classHeading">Course Resources</span><br/>'
       +'<a class="courseWebsite" target="_blank" href="https://agora.cs.illinois.edu/display/cs465/Home">Course Website</a><br>'
       +'Required Textbooks: <ul><li>Human Computer Interaction <img src="'+WWW+'/images/textbook.png"></li></ul></div>'
@@ -486,32 +476,6 @@ function init()
                          ,show: 'fade'
                          ,modal:  true
                          ,closeText: 'Close'
-<<<<<<< HEAD
-						 ,open : function() { 
-							$tabs = $("#map-tabs").tabs(); $tabs.tabs("select", 0);
-							$("#faculty-container .course-instructor").click(function() { 
-							var emailFormHTML = '<div id="emailLabels"><label for="fromAddress"><strong>From Address:</strong></label><div class="lblpad"/><label  for="toAddress"><strong>To Address:</strong></label><div class="lblpad"/><label for="ccAddress"><strong>CC Address:</strong></label><div class="lblpad"/><label  for="emailSubject"><strong>Subject:</strong></label><div class="lblpad"/><label  for="emailBody"><strong>Body:</strong></label></div>'
-											   +'<div id="emailInput"><input type="text" name="emailFrom" id="fromAddress" size="35" maxlength="60"><div class="inppad"/><input type="text" name="toAddress" id="toAddress" size="35" maxlength="60"><div class="inppad"/><input type="text" name="ccAddress" id="ccAddress" size="35" maxlength="60"><div class="inppad"/><input type="text" name="emailSubject" id="emailSubject" size="35" maxlength="60"><div class="inppad"/><textarea name="emailBody" id="emailBody" cols="33" maxlength="600" rows="6" /></div>';
-							var $emailDialog = $('<div class="emailWrapper"></div>').html(emailFormHTML)
-								.dialog({
-									title: "Email Professor", 
-									width:470,
-									buttons: { 
-										"Cancel" : function() { $(this).dialog('close');}, 
-										"Send" : function() { 
-											$(this).dialog('close');
-											var $emailConfirmation = $('<div class="emailWrapper">Your email message has been sent!</div>')
-											.dialog({title:"Message Confirmation", width: 322, height: 158, buttons: { "OK" : function() { $(this).dialog('close');}}});
-										}
-									}
-								});   							
-							}); 
-							// load bing location
-							LoadMap('Siebel Center for Computer Science, 201 N. Goodwin Avenue, Urbana, IL 61801');	
-							 
-						}
-						 ,close : function() { $(".detailsWrapper").remove();}
-=======
                          ,open : function() { 
                           $tabs = $("#map-tabs").tabs(); $tabs.tabs("select", 0);
                           $("#faculty-container .course-instructor").click(function() { 
@@ -533,7 +497,6 @@ function init()
                           });
                           }
                          ,close : function() { $(".detailsWrapper").remove();}
->>>>>>> 4414d790068673d73ac8b86bfd5ebb438df1fce8
                         };
 
     var $dialog = $('<div class="detailsWrapper"></div>').html(detailsHTML).dialog(dialogOptions);
