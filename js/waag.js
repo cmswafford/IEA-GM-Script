@@ -454,11 +454,11 @@ function init()
     var detailsHTML = ''
       +'<div class="class-left"><span class="classHeading">Class Times - '+ WAAG.term + ' ' + WAAG.year + '</span><br>'+classTimes      
       +'<br/></div><div class="class-right"><div id="faculty-container"><span class="classHeading">Faculty</span><br/>'
-      +'Instructor: <span class="course-instructor">Professor Foobar <img src="'+WWW+'/images/email.png"></span><br>'
-      +'TA: <span class="course-instructor">John Doe <img src="'+WWW+'/images/email.png"></span><br></div>'
+      +'Instructor: <span class="course-instructor">Professor Bailey <img src="'+WWW+'/images/email.png"></span><br>'
+      +'TA: <span class="course-instructor">Moushumi (Nila) Sharmin <img src="'+WWW+'/images/email.png"></span><br></div>'
       +'<div class="class-map-container ui-corner-all" id="map-container"><div class="class-map-tabs" id="map-tabs">'
-      +'  <ul><li><a href="#tabs-1">Building Map</a></li><li><a href="#tabs-2">Floorplan</a></li></ul>'
-      +'  <div id="tabs-1"><div class="class-map ui-corner-all"><img src="'+WWW+'/images/bing.map.png"></div>	</div>'	  
+      +'  <ul><li><a href="#tabs-1">Map</a></li><li><a href="#tabs-2">Floorplan</a></li></ul>'
+      +'  <div id="tabs-1"><div class="class-map ui-corner-all"><img src="'+WWW+'/images/bing.map.png"> <p><a href="http://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=Siebel+Center,+Urbana,+IL&hl=en&geocode=&mra=ls&sll=36.244273,-95.712891&sspn=44.509396,77.080078&ie=UTF8&ll=34.452218,-95.800781&spn=86.354885,154.160156&t=h&z=3">Get Directions</a></p></div>	</div>'	  
       +'  <div id="tabs-2"><div class="class-map ui-corner-all"><img src="'+WWW+'/images/bing.map2.png"></div>	</div>'  
       +'</div></div>'	  
       +'</div>'
@@ -480,11 +480,11 @@ function init()
                           $tabs = $("#map-tabs").tabs(); $tabs.tabs("select", 0);
                           $("#faculty-container .course-instructor").click(function() { 
                           var emailFormHTML = '<div id="emailLabels"><label for="fromAddress"><strong>From Address:</strong></label><div class="lblpad"/><label  for="toAddress"><strong>To Address:</strong></label><div class="lblpad"/><label for="ccAddress"><strong>CC Address:</strong></label><div class="lblpad"/><label  for="emailSubject"><strong>Subject:</strong></label><div class="lblpad"/><label  for="emailBody"><strong>Body:</strong></label></div>'
-                                     +'<div id="emailInput"><input type="text" name="emailFrom" id="fromAddress" size="35" maxlength="60"><div class="inppad"/><input type="text" name="toAddress" id="toAddress" size="35" maxlength="60"><div class="inppad"/><input type="text" name="ccAddress" id="ccAddress" size="35" maxlength="60"><div class="inppad"/><input type="text" name="emailSubject" id="emailSubject" size="35" maxlength="60"><div class="inppad"/><textarea name="emailBody" id="emailBody" cols="33" maxlength="600" rows="6" /></div>';
+                                     +'<div id="emailInput"><input type="text" disabled="disabled" value="swaffor1@illinois.edu" name="emailFrom" id="fromAddress" size="35" maxlength="60"><div class="inppad"/><input type="text" name="toAddress" id="toAddress" size="35" maxlength="60" value="bpbailey@illinois.edu" disabled="disabled"><div class="inppad"/><input type="text" name="ccAddress" id="ccAddress" size="35" maxlength="60"><div class="inppad"/><input type="text" name="emailSubject" id="emailSubject" size="35" maxlength="60"><div class="inppad"/><textarea name="emailBody" id="emailBody" cols="33" maxlength="600" rows="6" /></div>';
                           var $emailDialog = $('<div class="emailWrapper"></div>').html(emailFormHTML)
                             .dialog({
                               title: "Email Professor", 
-                              width:470,
+                              width:520,
                               buttons: { 
                                 "Cancel" : function() { $(this).dialog('close');}, 
                                 "Send" : function() { 
@@ -527,6 +527,21 @@ WAAG.closePrintPreview = function()
   $('#doPrint').remove();
 }
 
+WAAG.addTextbookPrintCSS = function()
+{
+  //WAAG.iea_print = $('#iea-print-css').detach();
+
+  // Show print-preview print
+  //l = document.createElement('link'); l.rel = 'stylesheet'; l.media = 'print'; l.type='text/css'; l.href=WWW+'/css/textbook-print.css'; l.id="textbook-print-css";
+  //(document.getElementsByTagName('head')[0] || document.body).appendChild(l);
+};
+
+WAAG.removeTextbookPrintCSS = function()
+{
+  //$('#textbook-print-css').remove();
+  //$('head').append(WAAG.iea_print);
+};
+
 WAAG.openTextbooksList = function()
 {
   // Create Textbook List
@@ -538,7 +553,7 @@ WAAG.openTextbooksList = function()
   + '<li>ECE 391 - Advanced UNIX Programming <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/tis-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
   + '<li>ECE 391 - The Linux Kernel<a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/amazon-icon.jpg"></a> <a href="http://www.amazon.com/Human-Computer-Interaction-3rd-Alan-Dix/dp/0130461091"><img src="'+WWW+'/images/tis-icon.jpg"></a> <a href="http://www.illinibookexchange.com/search.php5?dept=&classnum=&title=&author=&isbn=0130461091&page=0&sort="><img src="'+WWW+'/images/illinois-icon.jpg"></a></li>'
   + '</ul>'
-  + '<a href="#" onclick="addTextbookPrintCSS(); window.print(); removeTextbookPrintCSS(); return false;">Print Textbook List</a>'
+  + '<a href="#" onclick="WAAG.addTextbookPrintCSS(); window.print(); WAAG.removeTextbookPrintCSS(); return false;">Print Textbook List</a>'
   ;
 
 
